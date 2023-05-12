@@ -24,11 +24,10 @@ function submitBook(event) {
 
 function openEdit(event) {
     editPopUp.classList.remove('hidden');
-    const clickedCardID = this.id;
-    console.log(clickedCardID)
-    console.log(this);
+    currentSelectID = this.id;
+    console.log(currentSelectID);
     console.log(event);
-    const clickedBook = myLibrary.find((book) => book.id === clickedCardID);
+    const clickedBook = myLibrary.find((book) => book.id === currentSelectID);
     const currentTitle = document.createElement('div');
     const currentAuthor = document.createElement('div');
     const currentPageLength = document.createElement('div');
@@ -45,6 +44,16 @@ function openEdit(event) {
     editCard.appendChild(currentAuthor);
     editCard.appendChild(currentPageLength);
     editCard.appendChild(currentRead);
+}
+
+function deleteEntry() {
+    const findBook = myLibrary.find((book => book.id === currentSelectID));
+    const deleteIndex = myLibrary.indexOf(findBook);
+    const deleteCard = document.getElementById(currentSelectID);
+    console.log(deleteCard);
+    myLibrary.splice(deleteIndex,1);
+    container.removeChild(deleteCard);
+    currentSelectID = 0 
 }
 
 function clearEdit() {
@@ -104,6 +113,8 @@ const formSubmit = document.getElementById('formSubmit');
 const editPopUp = document.getElementById('edit-popup');
 const editCard = document.getElementById('edit-card');
 const closeEdit = document.getElementById('edit-card');
+const deleteButton = document.getElementById('edit-delete');
+let currentSelectID = '';
 
 myLibrary.push(theHobbit);
 myLibrary.push(lordOfTheFlies);
@@ -119,4 +130,5 @@ closeEdit.addEventListener("click", function () {
     editPopUp.classList.add('hidden');
     clearEdit();
 });
+deleteButton.addEventListener("click",deleteEntry);
 formSubmit.addEventListener("click", submitBook, false);
