@@ -10,7 +10,7 @@
 </head>
 <body>
 <div id="open-form" class="screen-container hidden">
-    <div class="form-container"> 
+    <div class="popup-container"> 
         <form class="book-input">
             <div class="form-header">What are you reading?</div>
             <div id="close-form" class="close-form"><img src="images/not-read.svg" alt="close"></div>
@@ -23,6 +23,15 @@
             </label>
             <button class="submit" type="submit" id="formSubmit">Enter</button>
         </form>
+    </div>
+</div>
+<div id="edit-popup" class="screen-container hidden">
+    <div id="edit-card" class="popup-container">  
+        <div id="close-edit" class="close-edit"><img src="images/not-read.svg" alt="close"></div>
+        <div class="label">Title:</div>
+        <div class="label">Author:</div>
+        <div class="label">Page Count:</div>
+        <div class="label">Read:</div>
     </div>
 </div>
 <div class="container">

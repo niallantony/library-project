@@ -116,7 +116,7 @@ body {
     display:none;
 }
 
-.form-container {
+.popup-container {
     font-family: montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: white;
     width: 20rem;
@@ -128,6 +128,68 @@ body {
     padding: 1.2rem;
     font-size: 1.5rem;
 }
+
+.popup-container#edit-card {
+    display:grid;
+    align-items: center;
+    position:relative;
+    grid-template-rows:  repeat(5,1fr);
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: ". title title title"
+                       ". author author author"
+                      ". pages pages pages"
+                      ". read read read"
+                      "delete delete edit edit";
+    column-gap: 1rem;
+}
+
+.close-edit img {
+    width: 1.3rem;
+    filter:opacity(50%);
+}
+.close-edit {
+    position:absolute;
+    width:1rem;
+    top: .4rem;
+    right: .6rem;
+    color: var(--header-text);
+    background-color: transparent
+}
+.close-edit:hover img {
+    filter:opacity(100%);
+}
+
+.close-edit:active img {
+    transform: scale(102%);
+}
+
+.label {
+    text-align: right;
+    font-size: .8rem;
+    color: var(--secondary);
+}
+.edit-title {
+    grid-area: title;
+    position: relative;
+}
+
+
+.edit-author {
+    grid-area: author;
+    position: relative;
+}
+
+.edit-pages {
+    grid-area: pages;
+    position: relative;
+}
+
+
+.edit-read {
+    grid-area: read;
+    position: relative;
+}
+
 
 .book-input {
     display:grid;

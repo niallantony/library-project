@@ -3,6 +3,7 @@ function book(name, author, pageCount, read) {
     this.author = author;
     this.pageCount = pageCount;
     this.read = read;
+    this.id = name.replace(/\s/g, "");
     this.info = function() {
         let prefix = '';
         if (!read) {
@@ -21,6 +22,42 @@ function submitBook(event) {
     bookForm.reset();
 }
 
+function openEdit(event) {
+    editPopUp.classList.remove('hidden');
+    const clickedCardID = this.id;
+    console.log(clickedCardID)
+    console.log(this);
+    console.log(event);
+    const clickedBook = myLibrary.find((book) => book.id === clickedCardID);
+    const currentTitle = document.createElement('div');
+    const currentAuthor = document.createElement('div');
+    const currentPageLength = document.createElement('div');
+    const currentRead = document.createElement('img');
+    currentTitle.textContent = clickedBook.name;
+    currentAuthor.textContent = clickedBook.author;
+    currentPageLength.textContent = clickedBook.pageCount;
+    currentRead.src = clickedBook.read ? './images/read.svg' : './images/not-read.svg';
+    currentTitle.classList.add('edit-title');
+    currentAuthor.classList.add('edit-author');
+    currentPageLength.classList.add('edit-pages');
+    currentRead.classList.add('edit-read');
+    editCard.appendChild(currentTitle);
+    editCard.appendChild(currentAuthor);
+    editCard.appendChild(currentPageLength);
+    editCard.appendChild(currentRead);
+}
+
+function clearEdit() {
+    const deleteName = document.querySelector('.edit-title');
+    const deleteAuthor = document.querySelector('.edit-author');
+    const deletePages = document.querySelector('.edit-pages');
+    const deleteRead = document.querySelector('.edit-read');
+    editCard.removeChild(deleteAuthor);
+    editCard.removeChild(deleteName);
+    editCard.removeChild(deletePages);
+    editCard.removeChild(deleteRead);
+}
+
 function createCard(book) {
     const card = document.createElement("div");
     const cardName = document.createElement("div");
@@ -29,6 +66,7 @@ function createCard(book) {
     const cardRead = document.createElement("div");
     const readImage = document.createElement("img");
     card.classList.add('card');
+    card.setAttribute('id',book.id);
     cardName.classList.add('title');
     cardAuthor.classList.add('author');
     cardPageLength.classList.add('pagelength');
@@ -43,6 +81,7 @@ function createCard(book) {
     cardPageLength.textContent = book.pageCount;
     readImage.src = book.read ? './images/read.svg' : './images/not-read.svg';
     cardRead.appendChild(readImage);
+    card.addEventListener("click", openEdit, false);
 }
 
 
@@ -62,15 +101,22 @@ const formPages = document.getElementById('formPages');
 const formRead = document.getElementById('formRead');
 const formSubmit = document.getElementById('formSubmit');
 
+const editPopUp = document.getElementById('edit-popup');
+const editCard = document.getElementById('edit-card');
+const closeEdit = document.getElementById('edit-card');
+
 myLibrary.push(theHobbit);
 myLibrary.push(lordOfTheFlies);
 myLibrary.push(nineteenEightyFour);
 myLibrary.forEach((element) => createCard(element));
-console.log(theHobbit.info());
 addButton.addEventListener("click", function () {
     formPopUp.classList.remove('hidden')
 });
 closeForm.addEventListener("click", function () {
     formPopUp.classList.add('hidden')
+});
+closeEdit.addEventListener("click", function () {
+    editPopUp.classList.add('hidden');
+    clearEdit();
 });
 formSubmit.addEventListener("click", submitBook, false);
