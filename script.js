@@ -12,14 +12,13 @@ function book(name, author, pageCount, read) {
     }
 }
 
-function showForm() {
-    formPopUp.classList.remove('hidden');
-    console.log('Done');
-}
-
-
-function addBookToLibrary() {
-    
+function submitBook(event) {
+    event.preventDefault();
+    const newBook = new book(formTitle.value, formAuthor.value, formPages.value, formRead.checked);
+    myLibrary.push(newBook);
+    formPopUp.classList.add('hidden');
+    createCard(newBook);
+    bookForm.reset();
 }
 
 function createCard(book) {
@@ -55,6 +54,14 @@ const container = document.querySelector('.container');
 const formPopUp = document.getElementById('open-form');
 const addButton = document.getElementById('add');
 const closeForm = document.getElementById('close-form');
+const bookForm = document.querySelector('.book-input');
+
+const formTitle = document.getElementById('formTitle');
+const formAuthor = document.getElementById('formAuthor');
+const formPages = document.getElementById('formPages');
+const formRead = document.getElementById('formRead');
+const formSubmit = document.getElementById('formSubmit');
+
 myLibrary.push(theHobbit);
 myLibrary.push(lordOfTheFlies);
 myLibrary.push(nineteenEightyFour);
@@ -66,4 +73,4 @@ addButton.addEventListener("click", function () {
 closeForm.addEventListener("click", function () {
     formPopUp.classList.add('hidden')
 });
-
+formSubmit.addEventListener("click", submitBook, false);
