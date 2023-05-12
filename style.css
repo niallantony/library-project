@@ -92,10 +92,23 @@ body {
     border-radius: 5px;
     background-color: transparent;
     border: 3px dashed var(--secondary);
+    padding: 0;
     align-self: center;
     justify-self: center;
     filter:opacity(50%);
+    color: var(--secondary);
+    display: flex;
+    font-size: 6rem;
+    justify-content: center;
+    align-items: center;
 }
+
+.add div{
+    margin:0;
+    padding: 0;
+    
+}
+
 
 .add:hover {
     transform: scale(102%);
