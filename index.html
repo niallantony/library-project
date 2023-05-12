@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>My Library</title>
     <script src="script.js" defer></script>
-</head>
-<body>
-<div id="open-form" class="screen-container hidden">
-    <div class="popup-container"> 
+  </head>
+  <body>
+    <div id="open-form" class="screen-container hidden">
+      <div class="popup-container">
         <form class="book-input">
-            <div class="form-header">What are you reading?</div>
-            <div id="close-form" class="close-form"><img src="images/not-read.svg" alt="close"></div>
-            <label class="label-tit" for="title">Title</label><input type="text" name="title" id="formTitle" />
-            <label class="label-auth" for="author">Author</label><input type="text" name="author" id="formAuthor" />
-            <label class="label-page" for="page-count">Pages</label><input type="text" name="page-count" id="formPages" />
-            <label class="checkbox">Finished?
-                <input type="checkbox" id="formRead">
-                <span class="new-check"></span>
-            </label>
-            <button class="submit" type="submit" id="formSubmit">Enter</button>
+          <div class="form-header">What are you reading?</div>
+          <div id="close-form" class="close-form">
+            <img src="images/not-read.svg" alt="close" />
+          </div>
+          <label class="label-tit" for="title">Title</label
+          ><input type="text" name="title" id="formTitle" />
+          <label class="label-auth" for="author">Author</label
+          ><input type="text" name="author" id="formAuthor" />
+          <label class="label-page" for="page-count">Pages</label
+          ><input type="text" name="page-count" id="formPages" />
+          <label class="checkbox"
+            >Finished?
+            <input type="checkbox" id="formRead" />
+            <span class="new-check"></span>
+          </label>
+          <button class="submit" type="submit" id="formSubmit">Enter</button>
         </form>
+      </div>
     </div>
-</div>
-<div id="edit-popup" class="screen-container hidden">
-    <div id="edit-card" class="popup-container">  
-        <div id="close-edit" class="close-edit"><img src="images/not-read.svg" alt="close"></div>
+    <div id="edit-popup" class="screen-container hidden">
+      <div id="edit-card" class="popup-container">
+        <div id="close-edit" class="close-edit">
+          <img src="images/not-read.svg" alt="close" />
+        </div>
         <div class="label">Title:</div>
         <div class="label">Author:</div>
         <div class="label">Page Count:</div>
         <div class="label">Read:</div>
-        <button id="edit-delete" >Delete</button>
+        <button id="edit-delete">Delete</button>
         <button id="edit">Read</button>
+      </div>
     </div>
-</div>
-<div class="container">
-    <div id="add" class="add"><div>+</div></div>
-</div>
-</body>
+    <div class="container">
+      <div id="add" class="add"><div>+</div></div>
+    </div>
+  </body>
 </html>
