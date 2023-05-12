@@ -15,9 +15,10 @@ function book(name, author, pageCount, read) {
 
 function submitBook(event) {
     event.preventDefault();
+    formPopUp.classList.add('hidden');
+    if (formTitle.value === '') {return};
     const newBook = new book(formTitle.value, formAuthor.value, formPages.value, formRead.checked);
     myLibrary.push(newBook);
-    formPopUp.classList.add('hidden');
     createCard(newBook);
     bookForm.reset();
 }
