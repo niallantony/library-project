@@ -1,0 +1,269 @@
+@font-face {
+    font-family: montserrat;
+    src: url(./Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+
+
+:root {
+    --background: #FCA311;
+    --header-text: #14213D;
+    --hover-color: #E5E5E5;
+    --secondary: #FF006E;
+}
+
+body {
+    background-color: var(--background);
+    position:relative;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));  
+    column-gap: 10px;
+    row-gap: 20px;
+    padding:1rem;
+}
+
+.card {
+    border-left: 5px dotted var(--background);
+    background-color: white;
+    padding: 1rem;
+    box-shadow: 5px 5px 5px -5px gray;
+    display: grid;
+    grid-template-rows: [title-start] auto
+                        [title-end author-start] 1fr 
+                        [author-end page-length-start read-start] 1fr [page-length-end read-end];
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    font-family: montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.01);
+}
+
+.title {
+    grid-area: title-start / 1 / title-end / 3;
+    font-size: 2rem;
+    align-self: end;
+    color: var(--header-text);
+}
+
+.author {
+    grid-row: author-start / author-end;
+    color: var(--secondary);
+    align-self: start;
+}
+
+.pagelength {
+    grid-area: page-length-start / 1 / page-length-end / 2;
+    align-self: end;
+}
+
+.pagelength::before {
+    font-size: .6rem;
+    content:"pages: "
+}
+
+.read {
+    justify-self: end;
+    align-self: end;
+    grid-area: read-start / 2 / read-end / 3;
+    position:relative;
+    bottom:-15px;
+}
+
+.read::before {
+    font-size: .6rem;
+    content:"finished: ";
+    position: relative;
+    bottom:15px;
+}
+
+.add {
+    width: 98%;
+    height: 98%;
+    min-height: 10rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 3px dashed var(--secondary);
+    align-self: center;
+    justify-self: center;
+    filter:opacity(50%);
+}
+
+.add:hover {
+    transform: scale(102%);
+}
+
+.screen-container {
+    position:absolute;
+    top:0;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.screen-container.hidden {
+    display:none;
+}
+
+.form-container {
+    font-family: montserrat, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: white;
+    width: 20rem;
+    height: auto;
+    align-self: center;
+    box-shadow: 5px 5px 10px -4px rgba(0,0,0,0.3);
+    border-radius: 1rem;
+    z-index: 2;
+    padding: 1.2rem;
+    font-size: 1.5rem;
+}
+
+.book-input {
+    display:grid;
+    position: relative;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(6,1fr);
+    grid-template-areas:    "title title"
+                            "label-1 input-1"
+                            "label-2 input-2"
+                            "label-3 input-3"
+                            "checkbox checkbox"
+                            "submit submit"; 
+    row-gap: 1rem;
+}
+
+.close-form {
+    position:absolute;
+    width:1rem;
+    top: -.6rem;
+    right: -.2rem;
+    color: var(--header-text);
+    background-color: transparent
+}
+
+.close-form img {
+    width: 1.3rem;
+    filter:opacity(50%);
+}
+
+.close-form:hover img {
+    filter:opacity(100%);
+}
+
+.close-form:active img {
+    transform: scale(102%);
+}
+
+.form-header {
+    grid-area: title;
+    color: var(--secondary);
+}
+
+.book-input label {
+    font-size: 1rem;
+    align-self: center;
+}
+
+.book-input button {
+    grid-area: submit;
+}
+
+.book-input input[type="text"] {
+    border-radius: 2rem;
+    border: 1px solid var(--header-text);
+    height: 2rem;
+    padding: 0.2rem 1rem;
+    font-family: inherit;
+    outline:none;
+}
+
+.book-input input[type="text"]:focus {
+    border: 1px solid var(--secondary);
+}
+
+.book-input input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.checkbox {
+    position: relative;
+    grid-area: checkbox;
+}
+
+.checkbox:hover input ~ .new-check {
+    background-color: var(--hover-color);
+}
+
+.checkbox input:active ~ .new-check {
+    background-color: gray;
+}
+
+
+.checkbox input:checked ~ .new-check {
+    background-color: white;
+}
+
+.new-check::after {
+    content:"";
+    position:absolute;
+    display: none;
+}
+
+.checkbox input:checked ~ .new-check::after {
+    display: block;
+}
+
+.checkbox .new-check:after {
+    left: 21%;
+    bottom: 21%;
+    width: 60%;
+    height: 60%;
+    border:0;
+    border-radius: 25%;
+    background-color: var(--secondary);
+  }
+
+.new-check {
+    position:absolute;
+    top: -.5rem;
+    right:0;
+    height: 2rem;
+    width: 2rem;
+    background-color: white;
+    border: 1px solid var(--header-text);
+    border-radius: 25%;
+}
+
+.book-input button {
+    background-color: var(--secondary);
+    border: 0;
+    border-radius: 2rem;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.book-input button:active {
+    transform: scale(98%);
+}
+
+
+
+
+
+
+
+
+
+
+

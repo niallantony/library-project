@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Work Space</title>
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div id="open-form" class="screen-container hidden">
+    <div class="form-container"> 
+        <form class="book-input">
+            <div class="form-header">What are you reading?</div>
+            <div id="close-form" class="close-form"><img src="images/not-read.svg" alt="close"></div>
+            <label class="label-tit" for="title">Title</label><input type="text" name="title" />
+            <label class="label-auth" for="author">Author</label><input type="text" name="author" />
+            <label class="label-page" for="page-count">Pages</label><input type="text" name="page-count" />
+            <label class="checkbox">Finished?
+                <input type="checkbox">
+                <span class="new-check"></span>
+            </label>
+            <button class="submit" type="submit">Enter</button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div id="add" class="add"></div>
+</div>
+</body>
+</html>
