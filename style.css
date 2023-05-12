@@ -192,6 +192,13 @@ body {
 #edit-delete {
     grid-area: delete;
     height: 2.5rem;
+    background-color: white;
+    border:1px solid var(--secondary);
+    color: var(--secondary);
+}
+
+#edit-delete:hover {
+    background-color: #E5E5E5;
 }
 
 #edit {

@@ -22,6 +22,15 @@ function submitBook(event) {
     bookForm.reset();
 }
 
+function switchRead() {
+    const currentBook = myLibrary.find((book) => book.id === currentSelectID);
+    const readStatus = document.getElementById(`${currentSelectID}img`)
+    currentBook.toggleRead();
+    readStatus.src = currentBook.read ? './images/read.svg' : './images/not-read.svg';
+    console.log(currentBook);
+    console.log(readStatus);
+}
+
 function openEdit(event) {
     editPopUp.classList.remove('hidden');
     currentSelectID = this.id;
@@ -47,7 +56,7 @@ function openEdit(event) {
 }
 
 function deleteEntry() {
-    const findBook = myLibrary.find((book => book.id === currentSelectID));
+    const findBook = myLibrary.find((book) => book.id === currentSelectID);
     const deleteIndex = myLibrary.indexOf(findBook);
     const deleteCard = document.getElementById(currentSelectID);
     console.log(deleteCard);
@@ -76,6 +85,7 @@ function createCard(book) {
     const readImage = document.createElement("img");
     card.classList.add('card');
     card.setAttribute('id',book.id);
+    readImage.setAttribute('id', `${book.id}img`);
     cardName.classList.add('title');
     cardAuthor.classList.add('author');
     cardPageLength.classList.add('pagelength');
@@ -95,6 +105,11 @@ function createCard(book) {
 
 
 let myLibrary = [];
+
+book.prototype.toggleRead = function() {
+    this.read = !this.read;
+}
+
 const theHobbit = new book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 const lordOfTheFlies = new book('The Lord of the Flies', 'William Golding', 204, true);
 const nineteenEightyFour = new book('1984', 'George Orwell', 243, false);
@@ -114,6 +129,7 @@ const editPopUp = document.getElementById('edit-popup');
 const editCard = document.getElementById('edit-card');
 const closeEdit = document.getElementById('edit-card');
 const deleteButton = document.getElementById('edit-delete');
+const editButton = document.getElementById('edit');
 let currentSelectID = '';
 
 myLibrary.push(theHobbit);
@@ -130,5 +146,7 @@ closeEdit.addEventListener("click", function () {
     editPopUp.classList.add('hidden');
     clearEdit();
 });
+editButton.addEventListener("click", switchRead);
+
 deleteButton.addEventListener("click",deleteEntry);
 formSubmit.addEventListener("click", submitBook, false);
